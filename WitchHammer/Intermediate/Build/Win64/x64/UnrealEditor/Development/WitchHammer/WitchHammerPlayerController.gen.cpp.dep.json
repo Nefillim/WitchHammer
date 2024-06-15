@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\unrealeditor\\inc\\witchhammer\\uht\\witchhammerplayercontroller.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\x64\\witchhammereditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\witchhammer\\definitions.witchhammer.h",
+            "h:\\work\\witchhammer\\witchhammer\\source\\witchhammer\\witchhammerplayercontroller.h",
+            "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\unrealeditor\\inc\\witchhammer\\uht\\witchhammerplayercontroller.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

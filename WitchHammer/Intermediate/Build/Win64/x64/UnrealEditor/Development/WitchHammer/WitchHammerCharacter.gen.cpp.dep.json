@@ -1,0 +1,23 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\unrealeditor\\inc\\witchhammer\\uht\\witchhammercharacter.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\x64\\witchhammereditor\\development\\unrealed\\sharedpch.unrealed.cpp20.h.pch",
+        "Includes": [
+            "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\witchhammer\\definitions.witchhammer.h",
+            "h:\\work\\witchhammer\\witchhammer\\source\\witchhammer\\witchhammercharacter.h",
+            "h:\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\character.h",
+            "h:\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\charactermovementreplication.h",
+            "h:\\ue_5.3\\engine\\source\\runtime\\experimental\\iris\\core\\public\\iris\\serialization\\irisobjectreferencepackagemap.h",
+            "h:\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\iriscore\\uht\\irisobjectreferencepackagemap.generated.h",
+            "h:\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\charactermovementreplication.generated.h",
+            "h:\\ue_5.3\\engine\\source\\runtime\\engine\\classes\\gameframework\\rootmotionsource.h",
+            "h:\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\rootmotionsource.generated.h",
+            "h:\\ue_5.3\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\character.generated.h",
+            "h:\\work\\witchhammer\\witchhammer\\intermediate\\build\\win64\\unrealeditor\\inc\\witchhammer\\uht\\witchhammercharacter.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

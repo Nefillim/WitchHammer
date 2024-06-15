@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"H:\\work\\WitchHammer\\WitchHammer\\Source\\WitchHammer\\WitchHammer.Build.cs",
+		"H:\\work\\WitchHammer\\WitchHammer\\Source\\WitchHammer.Target.cs",
+		"H:\\work\\WitchHammer\\WitchHammer\\Source\\WitchHammerEditor.Target.cs"
+	],
+	"EngineVersion": "5.3.2"
+}
