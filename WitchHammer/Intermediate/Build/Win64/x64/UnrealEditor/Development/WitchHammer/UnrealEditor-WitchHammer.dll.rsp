@@ -11,6 +11,7 @@
 /DELAY:UNLOAD
 /DLL
 /PDBALTPATH:%_PDB%
+/d2:-ExtendedWarningInfo
 /OPT:NOREF
 /OPT:NOICF
 /INCREMENTAL:NO
@@ -20,9 +21,9 @@
 /ALTERNATENAME:__imp___std_init_once_complete=__imp_InitOnceComplete
 /DELAYLOAD:"d3d12.dll"
 /DELAYLOAD:"DBGHELP.DLL"
-/LIBPATH:"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\lib\x64"
-/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\ucrt\x64"
-/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.22621.0\um\x64"
+/LIBPATH:"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\lib\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\ucrt\x64"
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\um\x64"
 /NODEFAULTLIB:"LIBCMT"
 /NODEFAULTLIB:"LIBCPMT"
 /NODEFAULTLIB:"LIBCMTD"
@@ -35,15 +36,15 @@
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
 /NATVIS:"..\Plugins\FX\Niagara\Intermediate\Build\Win64\x64\UnrealEditor\Development\Niagara\Niagara.natvis"
-"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.obj"
+"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.NoValFmtStr.ValApi.Cpp20.InclOrderUnreal5_3.h.obj"
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammer.init.gen.cpp.obj"
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerCharacter.gen.cpp.obj"
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerGameMode.gen.cpp.obj"
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerPlayerController.gen.cpp.obj"
-"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammer.cpp.obj"
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerCharacter.cpp.obj"
-"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerGameMode.cpp.obj"
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerPlayerController.cpp.obj"
+"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammer.cpp.obj"
+"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerGameMode.cpp.obj"
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"

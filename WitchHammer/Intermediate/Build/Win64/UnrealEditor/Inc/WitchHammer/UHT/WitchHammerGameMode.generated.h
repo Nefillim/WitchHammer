@@ -4,7 +4,7 @@
 	DO NOT modify this manually! Edit the corresponding .h files instead!
 ===========================================================================*/
 
-// IWYU pragma: private, include "WitchHammerGameMode.h"
+// IWYU pragma: private, include "GameBase/WitchHammerGameMode.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/ScriptMacros.h"
 
@@ -14,12 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define WITCHHAMMER_WitchHammerGameMode_generated_h
 
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_SPARSE_DATA
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_RPC_WRAPPERS_NO_PURE_DECLS
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_ACCESSORS
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_GameBase_WitchHammerGameMode_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAWitchHammerGameMode(); \
 	friend struct Z_Construct_UClass_AWitchHammerGameMode_Statics; \
@@ -28,11 +23,11 @@ public: \
 	DECLARE_SERIALIZER(AWitchHammerGameMode)
 
 
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_GameBase_WitchHammerGameMode_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	WITCHHAMMER_API AWitchHammerGameMode(AWitchHammerGameMode&&); \
-	WITCHHAMMER_API AWitchHammerGameMode(const AWitchHammerGameMode&); \
+	AWitchHammerGameMode(AWitchHammerGameMode&&); \
+	AWitchHammerGameMode(const AWitchHammerGameMode&); \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(WITCHHAMMER_API, AWitchHammerGameMode); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWitchHammerGameMode); \
@@ -40,17 +35,12 @@ public: \
 	WITCHHAMMER_API virtual ~AWitchHammerGameMode();
 
 
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_9_PROLOG
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_GENERATED_BODY \
+#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_GameBase_WitchHammerGameMode_h_9_PROLOG
+#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_GameBase_WitchHammerGameMode_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_SPARSE_DATA \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_SPARSE_DATA_PROPERTY_ACCESSORS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_ACCESSORS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_INCLASS_NO_PURE_DECLS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h_12_ENHANCED_CONSTRUCTORS \
+	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_GameBase_WitchHammerGameMode_h_12_INCLASS_NO_PURE_DECLS \
+	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_GameBase_WitchHammerGameMode_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -58,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> WITCHHAMMER_API UClass* StaticClass<class AWitchHammerGameMode>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerGameMode_h
+#define CURRENT_FILE_ID FID_work_WitchHammer_WitchHammer_Source_WitchHammer_GameBase_WitchHammerGameMode_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

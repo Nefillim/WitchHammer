@@ -14,11 +14,6 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define WITCHHAMMER_WitchHammerCharacter_generated_h
 
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_SPARSE_DATA
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS
-#define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_ACCESSORS
 #define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAWitchHammerCharacter(); \
@@ -31,8 +26,8 @@ public: \
 #define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
-	NO_API AWitchHammerCharacter(AWitchHammerCharacter&&); \
-	NO_API AWitchHammerCharacter(const AWitchHammerCharacter&); \
+	AWitchHammerCharacter(AWitchHammerCharacter&&); \
+	AWitchHammerCharacter(const AWitchHammerCharacter&); \
 public: \
 	DECLARE_VTABLE_PTR_HELPER_CTOR(NO_API, AWitchHammerCharacter); \
 	DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AWitchHammerCharacter); \
@@ -44,11 +39,6 @@ public: \
 #define FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_SPARSE_DATA \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_SPARSE_DATA_PROPERTY_ACCESSORS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_EDITOR_ONLY_SPARSE_DATA_PROPERTY_ACCESSORS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_ACCESSORS \
 	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_INCLASS_NO_PURE_DECLS \
 	FID_work_WitchHammer_WitchHammer_Source_WitchHammer_WitchHammerCharacter_h_12_ENHANCED_CONSTRUCTORS \
 private: \

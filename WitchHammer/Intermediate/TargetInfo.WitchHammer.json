@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "WitchHammer",
+			"Path": "..\\Source\\WitchHammer.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "WitchHammerEditor",
+			"Path": "..\\Source\\WitchHammerEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

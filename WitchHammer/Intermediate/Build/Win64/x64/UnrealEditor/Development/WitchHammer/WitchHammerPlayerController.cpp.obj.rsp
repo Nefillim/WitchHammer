@@ -1,8 +1,8 @@
 "H:\work\WitchHammer\WitchHammer\Source\WitchHammer\WitchHammerPlayerController.cpp"
-/FI"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h"
+/FI"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.NoValFmtStr.ValApi.Cpp20.InclOrderUnreal5_3.h"
 /FI"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\Definitions.WitchHammer.h"
-/Yu"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h"
-/Fp"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp20.h.pch"
+/Yu"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.NoValFmtStr.ValApi.Cpp20.InclOrderUnreal5_3.h"
+/Fp"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\UnrealEd\SharedPCH.UnrealEd.Project.NoValFmtStr.ValApi.Cpp20.InclOrderUnreal5_3.h.pch"
 /Fo"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerPlayerController.cpp.obj"
 /sourceDependencies "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammerPlayerController.cpp.dep.json"
 @"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\UnrealEditor\Development\WitchHammer\WitchHammer.Shared.rsp"
@@ -24,6 +24,7 @@
 /D_WINDLL
 /D_DISABLE_EXTENDED_ALIGNED_STORAGE
 /Ob2
+/d2ExtendedWarningInfo
 /Ox
 /Ot
 /GF

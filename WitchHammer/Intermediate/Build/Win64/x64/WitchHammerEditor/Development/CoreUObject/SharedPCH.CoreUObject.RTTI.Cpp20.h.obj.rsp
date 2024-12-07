@@ -1,18 +1,18 @@
 "H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\CoreUObject\SharedPCH.CoreUObject.RTTI.Cpp20.cpp"
 /I "."
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\UHT"
+/I "..\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode"
 /I "Runtime\CoreUObject\Public"
 /I "Runtime\CoreUObject\Internal"
 /I "Runtime\Core\Public"
 /I "Runtime\Core\Internal"
 /I "Runtime\TraceLog\Public"
 /external:W0
-/external:I "ThirdParty\mimalloc\include"
-/external:I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\INCLUDE"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um"
-/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt"
+/external:I "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\INCLUDE"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"
+/external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"
 /Yc"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\CoreUObject\SharedPCH.CoreUObject.RTTI.Cpp20.h"
 /Fp"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\CoreUObject\SharedPCH.CoreUObject.RTTI.Cpp20.h.pch"
 /Fo"H:\work\WitchHammer\WitchHammer\Intermediate\Build\Win64\x64\WitchHammerEditor\Development\CoreUObject\SharedPCH.CoreUObject.RTTI.Cpp20.h.obj"
@@ -35,6 +35,7 @@
 /D_WINDLL
 /D_DISABLE_EXTENDED_ALIGNED_STORAGE
 /Ob2
+/d2ExtendedWarningInfo
 /Ox
 /Ot
 /GF
