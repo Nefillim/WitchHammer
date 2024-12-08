@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameDataAsset.h"
 #include "GameFramework/GameModeBase.h"
 #include "WitchHammerGameMode.generated.h"
 
@@ -14,6 +15,9 @@ class AWitchHammerGameMode : public AGameModeBase
 public:
 	AWitchHammerGameMode();
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UGameDataAsset GameData;
 };
 
 
