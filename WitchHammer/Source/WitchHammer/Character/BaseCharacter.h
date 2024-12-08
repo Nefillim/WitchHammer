@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemComponent.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -19,9 +20,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	//TODO Add GAS, add meshes for bodyparts
+
+	//GAS
+	UPROPERTY()
+	UAbilitySystemComponent* AbilitySystemComponent;
 public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	//TODO Add GAS, add meshes for bodyparts
+	UFUNCTION()
+	UAbilitySystemComponent* GetAbilitySystemComponent(){return AbilitySystemComponent;}
 };
