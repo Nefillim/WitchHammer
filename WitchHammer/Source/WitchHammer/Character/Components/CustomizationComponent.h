@@ -6,11 +6,6 @@
 #include "Components/ActorComponent.h"
 #include "WitchHammer/Inventory/Item.h"
 #include "CustomizationComponent.generated.h"
-
-DECLARE_MULTICAST_DELEGATE_TwoParams(FOnEquipItem, ESlotType, UItem);
-
-DECLARE_MULTICAST_DELEGATE_TwoParams(FOnUnEquipItem, ESlotType, UItem);
-
 UENUM()
 enum ESlotType
 {
@@ -23,6 +18,10 @@ enum ESlotType
 	Hips,
 	Legs
 };
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnEquipItem, ESlotType, UItem*);
+
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnUnEquipItem, ESlotType, UItem*);
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class WITCHHAMMER_API UCustomizationComponent : public UActorComponent

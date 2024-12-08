@@ -25,7 +25,7 @@ void UInventoryComponent::BeginPlay()
 
 bool UInventoryComponent::HasItems(FString ItemId)
 {
-	return ItemStacks.Contains(ItemId) & ItemStacks[ItemId]->Items.Num() > 0;
+	return ItemStacks.Contains(ItemId) & (ItemStacks[ItemId]->Items.Num() > 0);
 }
 
 int UInventoryComponent::GetItemsCount(FString ItemId)
@@ -48,13 +48,17 @@ void UInventoryComponent::AddItems(UItemStack* ItemStack)
 
 void UInventoryComponent::RemoveItems(FString ItemId, int Count)
 {
-	const auto RemovedCount = ItemStacks[ItemId]->Items.Num() > Count ? Count : ItemStacks[ItemId]->Items.Num();
-	ItemStacks[ItemId]->Items.RemoveAll(RemovedCount);
-	if(!ItemStacks[ItemId]->Items.Num() > 0)
+	if(ItemStacks.Contains(ItemId))
 	{
-		ItemStacks.Remove(ItemId);
+		const auto RemovedCount = ItemStacks[ItemId]->Items.Num() > Count ? Count : ItemStacks[ItemId]->Items.Num();
+		
+		ItemStacks[ItemId]->Items.RemoveAt(0,RemovedCount);
+		if(ItemStacks[ItemId]->Items.Num() <= 0)
+		{
+			ItemStacks.Remove(ItemId);
+		}
+		OnRemoveItems.Broadcast(ItemId, RemovedCount);
 	}
-	OnRemoveItems.Broadcast(ItemId, RemovedCount);
 }
 
 

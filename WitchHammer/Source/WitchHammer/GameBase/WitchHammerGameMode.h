@@ -17,7 +17,7 @@ public:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UGameDataAsset GameData;
+	UGameDataAsset* GameData;
 };
 
 

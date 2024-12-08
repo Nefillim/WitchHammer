@@ -18,7 +18,7 @@ struct FItemAsset
 	FString Id;
 
 	UPROPERTY()
-	UMeshComponent Mesh;
+	UMeshComponent* Mesh;
 
 	UPROPERTY()
 	UTexture2D* Texture;
