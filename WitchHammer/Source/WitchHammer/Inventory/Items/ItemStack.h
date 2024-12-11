@@ -8,17 +8,11 @@
  * 
  */
 UCLASS()
-class WITCHHAMMER_API UItemStack : public UObject
+class WITCHHAMMER_API UItemStack : public UItem
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY()
-	FString Id;
-
-	UPROPERTY()
-	TArray<UItem*> Items;
-	
-	UPROPERTY()
-	int MaxStackSize = -1;
+	int Count = 0;
 };

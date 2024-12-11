@@ -162,27 +162,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8343031bbc7233f3",
+  "active": "684a0ee73a787673",
   "lastOpenFiles": [
+    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.cpp.lc.obj",
+    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.cpp.dep.lc.json",
+    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.gen.cpp.lc.obj",
+    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.gen.cpp.dep.lc.json",
+    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerGameMode.cpp.lc.obj",
+    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerGameMode.cpp.dep.lc.json",
+    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.AssemblyInfo.cs",
+    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.AssemblyInfoInputs.cache",
+    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerGameMode.gen.cpp.lc.obj",
+    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.GeneratedMSBuildEditorConfig.editorconfig",
+    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.csproj.AssemblyReference.cache",
     "Lockation.md",
     "Docs/Base/Локации.md",
     "Docs/Общая информация.md",
     "Docs/Base/Игрок/Игрок.md",
     "Docs/Base/Ресурсы/Ресурсы.md",
-    "Docs/Base/Ресурсы",
     "Docs/Base/Культ/Базовая локация.md",
     "Docs/Base/Культ/Культ.md",
-    "Docs/Base/Культ",
-    "Docs/Base/Игрок",
     "Docs/Противники/Противники.md",
-    "Docs/Противники",
     "Docs/Base/Статические объекты/Перемещаемые объекты.md",
     "Docs/Base/Статические объекты/Переход.md",
     "Docs/Base/Статические объекты/Препятствия.md",
     "Docs/Base/Статические объекты/Ловушки.md",
-    "Docs/Base/Статические объекты/Спавнеры противников.md",
-    "Docs/Base/Статические объекты",
-    "Docs/Base",
-    "Docs"
+    "Docs/Base/Статические объекты/Спавнеры противников.md"
   ]
 }

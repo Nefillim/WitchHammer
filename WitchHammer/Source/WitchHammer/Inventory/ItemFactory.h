@@ -13,5 +13,6 @@ class WITCHHAMMER_API UItemFactory : public UObject
 {
 	GENERATED_BODY()
 
-	
+	UFUNCTION()
+	UItem* CreateItem(FString ItemId, FItemPostCreationProps Props);
 };

@@ -9,6 +9,7 @@
 /**
  * 
  */
+//Item properties that must be set in data table
 USTRUCT()
 struct FItemAsset
 {
@@ -18,7 +19,7 @@ struct FItemAsset
 	FString Id;
 
 	UPROPERTY()
-	UMeshComponent* Mesh;
+	USkeletalMesh* Mesh;
 
 	UPROPERTY()
 	UTexture2D* Texture;
@@ -27,15 +28,24 @@ struct FItemAsset
 	UTexture2D* Icon;
 };
 
+//Item properties that must be set in ItemFactory (like unique random bonuses)
+USTRUCT()
+struct FItemPostCreationProps
+{
+	GENERATED_BODY()
+	//if true recreate props or dont use struct
+	bool bEmpty = true;
+};
+
+
 UCLASS()
 class WITCHHAMMER_API UItem : public UObject
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY()
-	FString Id;	
-
-	/*
-	 * TODO Add item properties
-	 */
+	FString DataTableId;
+	
+	UPROPERTY()
+	FItemAsset Asset; 
 };

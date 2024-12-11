@@ -18,5 +18,8 @@ class WITCHHAMMER_API UGameDataAsset : public UDataAsset
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameData")
 	UDataTable* ItemsDataTable;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameData")
+	UDataTable* DefaultMeshesDataTable;
 	
 };

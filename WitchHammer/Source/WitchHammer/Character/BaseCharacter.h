@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemComponent.h"
+#include "Components/CustomizationComponent.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -22,6 +23,8 @@ protected:
 
 	//TODO Add GAS, add meshes for bodyparts
 
+	UPROPERTY()
+	UCustomizationComponent* CustomizationComponent;
 	//GAS
 	UPROPERTY()
 	UAbilitySystemComponent* AbilitySystemComponent;
