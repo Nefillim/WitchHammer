@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreUObjectClasses.h"
+#include "Items/Item.h"
 #include "ItemFactory.generated.h"
 
 /**
@@ -14,5 +15,5 @@ class WITCHHAMMER_API UItemFactory : public UObject
 	GENERATED_BODY()
 
 	UFUNCTION()
-	UItem* CreateItem(FString ItemId, FItemPostCreationProps Props);
+	static UItem* CreateItem(FString ItemId, FItemPostCreationProps Props);
 };

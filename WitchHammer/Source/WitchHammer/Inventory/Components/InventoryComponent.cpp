@@ -31,7 +31,7 @@ bool UInventoryComponent::HasItems(const FString& ItemId)
 	return ItemStacks.Contains(ItemId);
 }
 
-bool UInventoryComponent::HasItem(const FGuid ItemId)
+bool UInventoryComponent::HasItem(const FName ItemId)
 {
 	return UniqueItems.Contains(ItemId);
 }
@@ -77,7 +77,7 @@ void UInventoryComponent::RemoveItems(FString ItemId, int Count)
 	}
 }
 
-void UInventoryComponent::RemoveItem(FGuid ItemId)
+void UInventoryComponent::RemoveItem(FName ItemId)
 {
 	if(UniqueItems.Contains(ItemId))
 	{
@@ -105,7 +105,7 @@ TArray<UItem*> UInventoryComponent::GetItems()
 TArray<UItem*> UInventoryComponent::GetItems(FString ItemId)
 {
 	TArray<UItem*> ResItems;
-	for(auto Item : ItemStacks[ItemId])
+	for(auto [Id, Item] : ItemStacks)
 	{
 		ResItems.AddUnique(Item);
 	}

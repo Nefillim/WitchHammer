@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameDataAsset.h"
 #include "Engine/GameInstance.h"
 #include "WHGameInstance.generated.h"
 
@@ -20,7 +21,5 @@ public:
 
 protected:
 	UPROPERTY()
-	TSoftObjectPtr<UGameDataAsset> GameData = nullptr;
-
-	
+	TSoftObjectPtr<UGameDataAsset> GameData;
 };

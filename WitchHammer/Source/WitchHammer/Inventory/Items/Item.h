@@ -4,12 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "WitchHammer/Character/BaseCharacter.h"
 #include "Item.generated.h"
 
 /**
  * 
  */
 //Item properties that must be set in data table
+
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnEquipItem, ABaseCharacter*, ACharacter);
+
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnUnEquipItem, ABaseCharacter*, ACharacter);
+
 USTRUCT()
 struct FItemAsset
 {
@@ -48,4 +55,8 @@ public:
 	
 	UPROPERTY()
 	FItemAsset Asset; 
+	
+	
+	FOnEquipItem OnEquipItem;
+	FOnUnEquipItem OnUnEquipItem;
 };

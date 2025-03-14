@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Docs/Base/Локации.md",
+                "file": "Docs/Base/Игрок/Компоненты/AbilityManager.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Локации"
+              "title": "AbilityManager"
             }
           }
         ]
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Docs/Base/Локации.md",
+                "file": "Docs/Общая информация.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Локации"
+              "title": "Backlinks for Общая информация"
             }
           },
           {
@@ -164,21 +164,23 @@
   },
   "active": "684a0ee73a787673",
   "lastOpenFiles": [
+    "Docs/Base/Игрок/Игрок.md",
+    "Docs/Base/Игрок/Компоненты/AbilityManager.md",
+    "Docs/Base/Механики/Способности/Голова",
+    "Docs/Base/Механики/Способности/Корпус",
+    "Docs/Base/Механики/Стресс.md",
+    "Docs/Base/Механики/Способности/Использование",
+    "Docs/Base/Механики/Способности/Перемещение",
+    "Docs/Base/Механики/Способности/Атака",
+    "Docs/Base/Механики/Способности",
+    "Docs/Общая информация.md",
+    "Docs/Base/Механики",
+    "Docs/Base/Игрок/Компоненты",
+    "README.md",
+    "Docs/Base/Локации.md",
     "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.cpp.lc.obj",
     "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.cpp.dep.lc.json",
-    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.gen.cpp.lc.obj",
-    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerPlayerController.gen.cpp.dep.lc.json",
-    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerGameMode.cpp.lc.obj",
-    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerGameMode.cpp.dep.lc.json",
-    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.AssemblyInfo.cs",
-    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.AssemblyInfoInputs.cache",
-    "WitchHammer/Intermediate/Build/Win64/x64/UnrealEditor/Development/WitchHammer/WitchHammerGameMode.gen.cpp.lc.obj",
-    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.GeneratedMSBuildEditorConfig.editorconfig",
-    "WitchHammer/Intermediate/Build/BuildRulesProjects/WitchHammerModuleRules/obj/Development/WitchHammerModuleRules.csproj.AssemblyReference.cache",
     "Lockation.md",
-    "Docs/Base/Локации.md",
-    "Docs/Общая информация.md",
-    "Docs/Base/Игрок/Игрок.md",
     "Docs/Base/Ресурсы/Ресурсы.md",
     "Docs/Base/Культ/Базовая локация.md",
     "Docs/Base/Культ/Культ.md",

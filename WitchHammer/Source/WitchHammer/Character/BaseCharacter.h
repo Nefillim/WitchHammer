@@ -5,7 +5,10 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemComponent.h"
-#include "Components/CustomizationComponent.h"
+#include "BaseAttributeSet.h"
+#include "WitchHammer/Components/CustomizationComponent.h"
+#include "WitchHammer/Inventory/Components/InventoryComponent.h"
+#include "WitchHammer/Weapon/WeaponComponent.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -21,17 +24,42 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	//TODO Add GAS, add meshes for bodyparts
+	
+	//Components
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UCustomizationComponent> CustomizationComponent;
 
-	UPROPERTY()
-	UCustomizationComponent* CustomizationComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UInventoryComponent> InventoryComponent;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UWeaponComponent> WeaponComponent;
+
 	//GAS
-	UPROPERTY()
-	UAbilitySystemComponent* AbilitySystemComponent;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UBaseAttributeSet> AttributeSet;
 public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	//Stress
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int StressLevel = 0;
+	
+	//Components getters
 	UFUNCTION()
 	UAbilitySystemComponent* GetAbilitySystemComponent(){return AbilitySystemComponent;}
+
+	UFUNCTION()
+	UCustomizationComponent* GetCustomizationComponent(){return CustomizationComponent;}
+
+	UFUNCTION()
+	UInventoryComponent* GetInventoryComponent(){return InventoryComponent;}
+
+	UFUNCTION()
+	UWeaponComponent* GetWeaponComponent(){return WeaponComponent;}
+	
 };

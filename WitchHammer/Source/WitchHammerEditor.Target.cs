@@ -5,11 +5,12 @@ using System.Collections.Generic;
 
 public class WitchHammerEditorTarget : TargetRules
 {
-	public WitchHammerEditorTarget(TargetInfo Target) : base(Target)
+	public WitchHammerEditorTarget(TargetInfo target) : base(target)
 	{
 		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V4;
+		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_3;
 		ExtraModuleNames.Add("WitchHammer");
+		bUseUnityBuild = true;
 	}
 }

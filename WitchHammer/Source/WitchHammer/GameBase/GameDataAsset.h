@@ -14,8 +14,7 @@ class WITCHHAMMER_API UGameDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
 
-	protected:
-
+	public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameData")
 	UDataTable* ItemsDataTable;
 

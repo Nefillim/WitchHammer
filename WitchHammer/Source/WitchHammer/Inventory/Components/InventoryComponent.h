@@ -28,7 +28,7 @@ protected:
 
 	TMap<FString, UItemStack*> ItemStacks;
 
-	TMap<FGuid, UUniqueItem*> UniqueItems;
+	TMap<FName, UUniqueItem*> UniqueItems;
 
 public:
 	//Check if inventory contains item stack
@@ -37,15 +37,13 @@ public:
 
 	//Check if inventory contains unique item
 	UFUNCTION()
-	bool HasItem(FGuid ItemId);
+	bool HasItem(FName ItemId);
 	
 	UFUNCTION()
 	int GetItemsCount(FString ItemId);
 
-	UFUNCTION()
 	void AddItem(UUniqueItem* Item);
 
-	UFUNCTION()
 	void AddItem(UItemStack* Item);
 	
 	//Remove items from stacks
@@ -54,12 +52,10 @@ public:
 
 	//Remove unique item
 	UFUNCTION()
-	void RemoveItem(FGuid ItemId);
+	void RemoveItem(FName ItemId);
 
-	UFUNCTION()
 	TArray<UItem*> GetItems();
 
-	UFUNCTION()
 	TArray<UItem*> GetItems(FString ItemId);
 
 	UFUNCTION()
