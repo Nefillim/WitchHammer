@@ -5,16 +5,24 @@
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "NiagaraSystem.h"
 #include "NiagaraFunctionLibrary.h"
-#include "WitchHammerCharacter.h"
 #include "Engine/World.h"
 #include "EnhancedInputComponent.h"
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
+#include "Character/WitchHammerCharacter.h"
 #include "Engine/LocalPlayer.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
-AWitchHammerPlayerController::AWitchHammerPlayerController()
+AWitchHammerPlayerController::AWitchHammerPlayerController(): ShortPressThreshold(0), FXCursor(nullptr),
+                                                              DefaultMappingContext(nullptr),
+                                                              MoveUpAction(nullptr),
+                                                              MoveDownAction(nullptr),
+                                                              MoveLeftAction(nullptr),
+                                                              MoveRightAction(nullptr),
+                                                              JumpAction(nullptr),
+                                                              bMoveToMouseCursor(0),
+                                                              bIsTouch(false)
 {
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;
@@ -43,16 +51,14 @@ void AWitchHammerPlayerController::SetupInputComponent()
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent))
 	{
 		// Setup mouse input events
-		EnhancedInputComponent->BindAction(SetDestinationClickAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::OnInputStarted);
-		EnhancedInputComponent->BindAction(SetDestinationClickAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::OnSetDestinationTriggered);
-		EnhancedInputComponent->BindAction(SetDestinationClickAction, ETriggerEvent::Completed, this, &AWitchHammerPlayerController::OnSetDestinationReleased);
-		EnhancedInputComponent->BindAction(SetDestinationClickAction, ETriggerEvent::Canceled, this, &AWitchHammerPlayerController::OnSetDestinationReleased);
-
-		// Setup touch input events
-		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::OnInputStarted);
-		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::OnTouchTriggered);
-		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Completed, this, &AWitchHammerPlayerController::OnTouchReleased);
-		EnhancedInputComponent->BindAction(SetDestinationTouchAction, ETriggerEvent::Canceled, this, &AWitchHammerPlayerController::OnTouchReleased);
+		EnhancedInputComponent->BindAction(MoveUpAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveForward);
+		EnhancedInputComponent->BindAction(MoveDownAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveBack);
+		EnhancedInputComponent->BindAction(MoveLeftAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveLeft);
+		EnhancedInputComponent->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveRight);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveUp);
+		
+		EnhancedInputComponent->BindAction(BaseAttackAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::BaseAttack);
+		
 	}
 	else
 	{
@@ -60,11 +66,51 @@ void AWitchHammerPlayerController::SetupInputComponent()
 	}
 }
 
-void AWitchHammerPlayerController::OnInputStarted()
+void AWitchHammerPlayerController::Move(FVector Direction)
 {
-	StopMovement();
+	if (auto ControlledPawn = Cast<ACharacter>(GetPawn()))
+	{
+		ControlledPawn->AddMovementInput(Direction, 1.0, false);
+	}
 }
 
+void AWitchHammerPlayerController::MoveForward()
+{
+	Move(FVector::ForwardVector);
+}
+
+void AWitchHammerPlayerController::MoveBack()
+{
+	Move(FVector::BackwardVector);
+}
+
+void AWitchHammerPlayerController::MoveLeft()
+{
+	Move(FVector::LeftVector);
+}
+
+void AWitchHammerPlayerController::MoveRight()
+{
+	Move(FVector::RightVector);
+}
+
+void AWitchHammerPlayerController::MoveUp()
+{
+	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
+	{
+		ControlledPawn->Jump();
+	}
+}
+
+void AWitchHammerPlayerController::BaseAttack()
+{
+	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
+	{
+		ControlledPawn->BaseAttack();
+	}
+}
+
+/*
 // Triggered every frame when the input is held down
 void AWitchHammerPlayerController::OnSetDestinationTriggered()
 {
@@ -122,4 +168,4 @@ void AWitchHammerPlayerController::OnTouchReleased()
 {
 	bIsTouch = false;
 	OnSetDestinationReleased();
-}
+}*/

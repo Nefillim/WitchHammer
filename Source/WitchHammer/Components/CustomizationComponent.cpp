@@ -3,7 +3,7 @@
 
 #include "CustomizationComponent.h"
 
-#include "WitchHammer/Character/MainCharacter.h"
+#include "WitchHammer/Character/WitchHammerCharacter.h"
 #include "WitchHammer/Inventory/Items/Item.h"
 
 
@@ -23,7 +23,7 @@ void UCustomizationComponent::BeginPlay()
 
 void UCustomizationComponent::EquipItem(ESlotType SlotType, UItem* Item)
 {
-	if(auto Character = Cast<AMainCharacter>(GetOwner()))
+	if(auto Character = Cast<AWitchHammerCharacter>(GetOwner()))
 	{
 		EquippedItems.Add(SlotType, Item);
 		if(Character->CustomizableMeshes.Contains(SlotType))
@@ -36,7 +36,7 @@ void UCustomizationComponent::EquipItem(ESlotType SlotType, UItem* Item)
 
 void UCustomizationComponent::UnEquipItem(ESlotType SlotType)
 {
-	if(auto Character = Cast<AMainCharacter>(GetOwner()))
+	if(auto Character = Cast<AWitchHammerCharacter>(GetOwner()))
 	{
 		if(EquippedItems.Contains(SlotType))
 		{

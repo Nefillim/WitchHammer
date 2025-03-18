@@ -34,13 +34,45 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputMappingContext* DefaultMappingContext;
 	
-	/** Jump Input Action */
+	/** Jump Input Action 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* SetDestinationClickAction;
 
-	/** Jump Input Action */
+	/** Jump Input Action 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* SetDestinationTouchAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* MoveForwardAction;*/
+
+	// Move Up InputAction
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* MoveUpAction;
+
+	// Move Down InputAction
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* MoveDownAction;
+
+	// Move Left InputAction
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* MoveLeftAction;
+
+	// Move Right InputAction
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* MoveRightAction;
+
+	// Use Ability InputAction
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* JumpAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* BaseAttackAction;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* AdditionalAttackAction;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* UseBuffAbilityAction;
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -51,12 +83,32 @@ protected:
 	// To add mapping context
 	virtual void BeginPlay();
 
-	/** Input handlers for SetDestination action. */
-	void OnInputStarted();
+	/** Input handlers for SetDestination action. 
 	void OnSetDestinationTriggered();
 	void OnSetDestinationReleased();
 	void OnTouchTriggered();
-	void OnTouchReleased();
+	void OnTouchReleased();*/
+
+	UFUNCTION()
+	void MoveForward();
+
+	UFUNCTION()
+	void MoveBack();
+
+	UFUNCTION()
+	void MoveLeft();
+
+	UFUNCTION()
+	void MoveRight();
+
+	UFUNCTION()
+	void MoveUp();
+
+	UFUNCTION()
+	void BaseAttack();
+	
+	UFUNCTION()
+	void Move(FVector Direction);
 
 private:
 	FVector CachedDestination;

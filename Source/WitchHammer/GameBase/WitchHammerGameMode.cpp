@@ -5,7 +5,7 @@
 #include <string>
 
 #include "UObject/ConstructorHelpers.h"
-#include "WitchHammer/WitchHammerCharacter.h"
+#include "WitchHammer/Character//WitchHammerCharacter.h"
 #include "WitchHammer/WitchHammerPlayerController.h"
 #include "Logging/LogMacros.h"
 #include "Kismet/GameplayStatics.h"
