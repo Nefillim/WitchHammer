@@ -29,11 +29,6 @@ bool UInventoryComponent::HasItems(const FString& ItemId)
 	return ItemStacks.Contains(ItemId);
 }
 
-bool UInventoryComponent::HasItem(const FName ItemId)
-{
-	return UniqueItems.Contains(ItemId);
-}
-
 int UInventoryComponent::GetItemsCount(const FString& ItemId)
 {
 	if(ItemStacks.Contains(ItemId))
@@ -43,56 +38,35 @@ int UInventoryComponent::GetItemsCount(const FString& ItemId)
 	return 0;
 }
 
-void UInventoryComponent::AddItem(UUniqueItem* Item)
-{
-	UniqueItems.Emplace(Item->Id,Item);
-	OnAddItems.Broadcast(Item->DataTableId, 1);
-	OnInventoryChanged.Broadcast();
-}
-
 void UInventoryComponent::AddItem(UItemStack* Item)
 {
-	if(ItemStacks.Contains(Item->DataTableId))
+	if(ItemStacks.Contains(Item->Asset.Id))
 	{
-		ItemStacks[Item->DataTableId]->Count+= Item->Count;
-		OnAddItems.Broadcast(Item->DataTableId, Item->Count);
+		ItemStacks[Item->Asset.Id]->Count+= Item->Count;
+		OnAddItems.Broadcast(Item->Asset.Id, Item->Count);
 		OnInventoryChanged.Broadcast();
 		return;
 	}
-	ItemStacks.Add(Item->DataTableId,Item);
-	OnAddItems.Broadcast(Item->DataTableId, Item->Count);
+	ItemStacks.Add(Item->Asset.Id,Item);
+	OnAddItems.Broadcast(Item->Asset.Id, Item->Count);
 	OnInventoryChanged.Broadcast();
 }
 
-void UInventoryComponent::RemoveItems(FString ItemId, int Count)
+void UInventoryComponent::RemoveItems(UItemStack* Item, int Count)
 {
-	if(ItemStacks.Contains(ItemId))
+	if(ItemStacks.Contains(Item->Asset.Id))
 	{
-		auto ResCount = ItemStacks[ItemId]->Count > Count ? ItemStacks[ItemId]->Count - Count : 0;
-		ItemStacks[ItemId]->Count = ResCount;
-		OnRemoveItems.Broadcast(ItemId, ResCount);
+		auto ResCount = ItemStacks[Item->Asset.Id]->Count > Count ? ItemStacks[Item->Asset.Id]->Count - Count : 0;
+		ItemStacks[Item->Asset.Id]->Count = ResCount;
+		OnRemoveItems.Broadcast(Item->Asset.Id, ResCount);
 		OnInventoryChanged.Broadcast();
 	}
 }
 
-void UInventoryComponent::RemoveItem(FName ItemId)
-{
-	if(UniqueItems.Contains(ItemId))
-	{
-		const FString RemovedId = UniqueItems[ItemId]->DataTableId;
-		UniqueItems.Remove(ItemId);
-		OnRemoveItems.Broadcast(RemovedId, 1);
-		OnInventoryChanged.Broadcast();
-	}
-}
 
 TArray<UItem*> UInventoryComponent::GetItems()
 {
 	TArray<UItem*> ResItems;
-	for(auto [Id, Item] : UniqueItems)
-	{
-		ResItems.AddUnique(Item);
-	}
 	for(auto [Id, Item] : ItemStacks)
 	{
 		ResItems.AddUnique(Item);
@@ -107,19 +81,12 @@ TArray<UItem*> UInventoryComponent::GetItems(FString ItemId)
 	{
 		ResItems.AddUnique(Item);
 	}
-	for(auto [Id, Item] : UniqueItems)
-	{
-		if(Item->DataTableId == ItemId)
-		{
-			ResItems.AddUnique(Item);
-		}
-	}
+	
 	return ResItems;
 }
 
 void UInventoryComponent::Empty()
 {
-	UniqueItems.Empty();
 	ItemStacks.Empty();
 	
 	OnInventoryChanged.Broadcast();

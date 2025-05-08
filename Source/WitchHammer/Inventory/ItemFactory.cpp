@@ -3,7 +3,16 @@
 
 #include "ItemFactory.h"
 
-UItem* UItemFactory::CreateItem(FString ItemId, FItemPostCreationProps Props)
+#include "Items/ItemStack.h"
+#include "WitchHammer/GameBase/GameDataAsset.h"
+
+UItem* UItemFactory::CreateItemStack(FString ItemId, FItemGeneratedProps Props, int32 Count = 1)
 {
+	if(auto Stack = UItemStack::Create(Count))
+	{
+		Stack->SetupAsset(ItemId);
+		Stack->GenerateProps(Props);
+	}
+	
 	return nullptr;
 }

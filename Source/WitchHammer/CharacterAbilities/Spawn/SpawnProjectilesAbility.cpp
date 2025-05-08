@@ -26,4 +26,5 @@ void USpawnProjectilesAbility::CommitExecute(const FGameplayAbilitySpecHandle Ha
 		Projectile->SetReplicatedMovement(Movement);
 	}
 	Super::CommitExecute(Handle, ActorInfo, ActivationInfo);
+	CommitAbilityCooldown(Handle, ActorInfo, ActivationInfo, true);
 }

@@ -58,7 +58,7 @@ void AWitchHammerPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveUp);
 		
 		EnhancedInputComponent->BindAction(BaseAttackAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::BaseAttack);
-		
+		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::UseAbility);
 	}
 	else
 	{
@@ -106,9 +106,18 @@ void AWitchHammerPlayerController::BaseAttack()
 {
 	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
 	{
-		ControlledPawn->BaseAttack();
+		ControlledPawn->ActivateAbility(0);
 	}
 }
+
+void AWitchHammerPlayerController::UseAbility()
+{
+	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
+	{
+		ControlledPawn->ActivateAbility(1);
+	}
+}
+
 
 /*
 // Triggered every frame when the input is held down

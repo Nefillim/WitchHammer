@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputAction.h"
 #include "Templates/SubclassOf.h"
 #include "GameFramework/PlayerController.h"
 #include "WitchHammerPlayerController.generated.h"
@@ -67,12 +68,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* BaseAttackAction;
-	
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
-	UInputAction* AdditionalAttackAction;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
-	UInputAction* UseBuffAbilityAction;
+	UInputAction* AbilityAction;
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -106,6 +104,9 @@ protected:
 
 	UFUNCTION()
 	void BaseAttack();
+
+	UFUNCTION()
+	void UseAbility();
 	
 	UFUNCTION()
 	void Move(FVector Direction);

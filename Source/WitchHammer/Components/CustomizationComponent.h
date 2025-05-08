@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "CustomizationComponent.generated.h"
+class UItem;
+
 UENUM(BlueprintType)
 enum class ESlotType : uint8
 {
@@ -62,7 +64,7 @@ protected:
 	
 public:
 	UFUNCTION()
-	void EquipItem(ESlotType SlotType, UItem* Item);
+	void EquipItem(UItem* Item);
 
 	UFUNCTION()
 	void UnEquipItem(ESlotType SlotType);

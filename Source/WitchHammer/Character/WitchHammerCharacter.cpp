@@ -55,11 +55,7 @@ AWitchHammerCharacter::AWitchHammerCharacter()
 void AWitchHammerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	InitAbilities();
-	FTimerHandle TimerHandle;
-	FTimerDelegate TimerDelegate;
-	TimerDelegate.BindUFunction(this, FName("SetLookAtRotation"));
-	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, 0.05f, true);
+	InitTimers();
 }
 
 void AWitchHammerCharacter::InitMeshes()
@@ -80,13 +76,13 @@ void AWitchHammerCharacter::InitMeshes()
 	Legs->SetupAttachment(GetMesh());
 }
 
-void AWitchHammerCharacter::InitAbilities()
+void AWitchHammerCharacter::InitTimers()
 {
-	if(AbilitySystemComponent)
-	{
-		auto Spec = AbilitySystemComponent->BuildAbilitySpecFromClass(AbilityClass, 0, 0);	
-		AbilitySystemComponent->GiveAbility(Spec);
-	}
+	FTimerHandle TimerHandle;
+	FTimerDelegate TimerDelegate;
+	TimerDelegate.BindUObject(this, &AWitchHammerCharacter::SetLookAtRotation);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, 0.05f, true);
+	
 }
 
 void AWitchHammerCharacter::SetLookAtRotation()
@@ -107,6 +103,17 @@ void AWitchHammerCharacter::BaseAttack()
 	if(auto AS = GetAbilitySystemComponent())
 	{
 		if(auto Ability = AS->FindAbilitySpecFromInputID(0))
+		{
+			AS->TryActivateAbility(Ability->Handle);
+		}
+	}
+}
+
+void AWitchHammerCharacter::ActivateAbility(int InputId)
+{
+	if(auto AS = GetAbilitySystemComponent())
+	{
+		if(auto Ability = AS->FindAbilitySpecFromInputID(InputId))
 		{
 			AS->TryActivateAbility(Ability->Handle);
 		}

@@ -37,9 +37,8 @@ public:
 	UFUNCTION()
 	void InitAbilities();
 
-	//Move to Customization
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-	TArray<UGameplayAbility*> Abilities;
+	UFUNCTION()
+	void InitTimers();
 
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
@@ -72,14 +71,20 @@ public:
 	FVector ProjectileSpawnLocation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<USpawnProjectilesAbility> AbilityClass;
-	
+	TSubclassOf<UGameplayAbility> AttackAbilityClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UGameplayAbility> SelectTargetAbilityClass;
+
 	//Components
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UBaseInputComponent> CustomInputComponent;
 
 	UFUNCTION()
 	void BaseAttack();
+
+	UFUNCTION()
+	void ActivateAbility(int InputId);
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))

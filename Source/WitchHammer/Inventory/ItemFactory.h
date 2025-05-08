@@ -13,7 +13,7 @@ UCLASS()
 class WITCHHAMMER_API UItemFactory : public UObject
 {
 	GENERATED_BODY()
-
+public:
 	UFUNCTION()
-	static UItem* CreateItem(FString ItemId, FItemPostCreationProps Props);
+	static UItem* CreateItemStack(FString ItemId, FItemGeneratedProps Props, int32 Count);
 };

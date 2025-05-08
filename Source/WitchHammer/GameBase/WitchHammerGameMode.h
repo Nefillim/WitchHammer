@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameDataAsset.h"
 #include "GameFramework/GameModeBase.h"
+#include "WitchHammer/Inventory/ItemFactory.h"
 #include "WitchHammerGameMode.generated.h"
 
 UCLASS(minimalapi)

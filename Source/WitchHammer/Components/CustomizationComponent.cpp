@@ -21,14 +21,31 @@ void UCustomizationComponent::BeginPlay()
 	
 }
 
-void UCustomizationComponent::EquipItem(ESlotType SlotType, UItem* Item)
+void UCustomizationComponent::EquipItem(UItem* Item)
 {
 	if(auto Character = Cast<AWitchHammerCharacter>(GetOwner()))
 	{
-		EquippedItems.Add(SlotType, Item);
+		auto SlotType = Item->Asset->SlotType;
+		if(EquippedItems.Contains(SlotType))
+		{
+			if(SlotType == ESlotType::RightArm)
+			{
+				SlotType = ESlotType::LeftArm;
+				if(EquippedItems.Contains(SlotType))
+				{
+					UnEquipItem(SlotType);
+				}
+			}else
+			{
+				UnEquipItem(SlotType);
+			}
+		}
+		
+		EquippedItems.Emplace(SlotType, Item);
+
 		if(Character->CustomizableMeshes.Contains(SlotType))
 		{
-			Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(Item->Asset.Mesh);
+			Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(Item->Asset->Mesh);
 		}
 		Item->OnEquipItem.Broadcast(Character);	
 	}
@@ -56,7 +73,6 @@ void UCustomizationComponent::UnEquipItem(ESlotType SlotType)
 
 void UCustomizationComponent::SetDefaultMeshes()
 {
-	
 	for(auto [SLotType, Item] : EquippedItems)
 	{
 		UnEquipItem(SLotType);

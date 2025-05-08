@@ -5,7 +5,7 @@
 
 ABaseProjectile::ABaseProjectile()
 {
-	Capsule = CreateDefaultSubobject<UCapsuleComponent>("Capsule");
+	Capsule = CreateDefaultSubobject<UCapsuleComponent>("Capsule"); 
 	
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
 	ProjectileMovementComponent->SetUpdatedComponent(Capsule);
@@ -15,4 +15,6 @@ ABaseProjectile::ABaseProjectile()
 	ProjectileMovementComponent->bShouldBounce = true;
 	ProjectileMovementComponent->Bounciness = 0.3f;
 	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
+
+	InitialLifeSpan = 3.0f;
 }

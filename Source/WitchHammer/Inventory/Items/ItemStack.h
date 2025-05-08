@@ -12,6 +12,11 @@ class WITCHHAMMER_API UItemStack : public UItem
 	GENERATED_BODY()
 
 public:
+	UFUNCTION()
+	static UItemStack* Create(int32 Count);
+
+
 	UPROPERTY()
 	int Count = 0;
+
 };
