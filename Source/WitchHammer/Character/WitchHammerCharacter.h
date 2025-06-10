@@ -10,6 +10,19 @@
 #include "WitchHammerCharacter.generated.h"
 
 class UBaseInputComponent;
+//Enum to classify the abilities types used by player
+UENUM(BlueprintType)
+enum class EInputAction : uint8
+{
+	BaseAttack,
+	SpecialAction,
+	Jump,
+	Grab,
+	Toss,
+	OnMove,
+	Core,
+	Interact
+};
 
 UCLASS(Blueprintable)
 class AWitchHammerCharacter : public ABaseCharacter
@@ -74,17 +87,21 @@ public:
 	TSubclassOf<UGameplayAbility> AttackAbilityClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UGameplayAbility> JumpAbilityClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UGameplayAbility> GrabAbilityClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UGameplayAbility> SelectTargetAbilityClass;
 
 	//Components
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UBaseInputComponent> CustomInputComponent;
 
+	//GAS
 	UFUNCTION()
-	void BaseAttack();
-
-	UFUNCTION()
-	void ActivateAbility(int InputId);
+	void ActivateAbility(EInputAction InputId);
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))

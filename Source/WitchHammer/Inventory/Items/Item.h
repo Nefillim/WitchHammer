@@ -41,6 +41,8 @@ struct FItemAsset
 
 	UPROPERTY()
 	FGameplayAbilitySpec AbilitySpec;
+	
+	FItemAsset& operator=(FItemAsset* ItemAsset);
 };
 
 //Item properties that must be set in ItemFactory (like unique random bonuses)
@@ -62,7 +64,7 @@ class WITCHHAMMER_API UItem : public UObject
 	GENERATED_BODY()
 public:
 	UPROPERTY()
-	FItemAsset* Asset;
+	FItemAsset Asset;
 
 	UFUNCTION()
 	void SetupAsset(FString ItemId);

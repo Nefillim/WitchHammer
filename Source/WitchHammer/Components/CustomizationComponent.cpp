@@ -25,7 +25,7 @@ void UCustomizationComponent::EquipItem(UItem* Item)
 {
 	if(auto Character = Cast<AWitchHammerCharacter>(GetOwner()))
 	{
-		auto SlotType = Item->Asset->SlotType;
+		auto SlotType = Item->Asset.SlotType;
 		if(EquippedItems.Contains(SlotType))
 		{
 			if(SlotType == ESlotType::RightArm)
@@ -45,7 +45,7 @@ void UCustomizationComponent::EquipItem(UItem* Item)
 
 		if(Character->CustomizableMeshes.Contains(SlotType))
 		{
-			Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(Item->Asset->Mesh);
+			Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(Item->Asset.Mesh);
 		}
 		Item->OnEquipItem.Broadcast(Character);	
 	}

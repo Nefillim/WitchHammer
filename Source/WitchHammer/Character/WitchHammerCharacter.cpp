@@ -12,6 +12,7 @@
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "WitchHammer/CharacterAbilities/Move/GrabAbility.h"
 #include "WitchHammer/CharacterAbilities/Spawn/SpawnProjectilesAbility.h"
 
 AWitchHammerCharacter::AWitchHammerCharacter()
@@ -56,6 +57,7 @@ void AWitchHammerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	InitTimers();
+	InitAbilities();
 }
 
 void AWitchHammerCharacter::InitMeshes()
@@ -74,6 +76,22 @@ void AWitchHammerCharacter::InitMeshes()
 	Hips->SetupAttachment(GetMesh());
 	Legs = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Legs"));
 	Legs->SetupAttachment(GetMesh());
+}
+
+void AWitchHammerCharacter::InitAbilities()
+{
+	if(AbilitySystemComponent)
+	{
+		auto BaseAttackSpec = AbilitySystemComponent->BuildAbilitySpecFromClass(AttackAbilityClass, 0,
+			static_cast<int32>(EInputAction::BaseAttack));
+		AbilitySystemComponent->GiveAbility(BaseAttackSpec);
+		auto GrabSpec = AbilitySystemComponent->BuildAbilitySpecFromClass(GrabAbilityClass, 0,
+			static_cast<int32>(EInputAction::Grab));
+		AbilitySystemComponent->GiveAbility(GrabSpec);
+		auto JumpSpec = AbilitySystemComponent->BuildAbilitySpecFromClass(JumpAbilityClass, 0,
+			static_cast<int32>(EInputAction::Jump));
+		AbilitySystemComponent->GiveAbility(JumpSpec);
+	}
 }
 
 void AWitchHammerCharacter::InitTimers()
@@ -97,23 +115,11 @@ void AWitchHammerCharacter::SetLookAtRotation()
 	}
 }
 
-
-void AWitchHammerCharacter::BaseAttack()
+void AWitchHammerCharacter::ActivateAbility(EInputAction InputId)
 {
 	if(auto AS = GetAbilitySystemComponent())
 	{
-		if(auto Ability = AS->FindAbilitySpecFromInputID(0))
-		{
-			AS->TryActivateAbility(Ability->Handle);
-		}
-	}
-}
-
-void AWitchHammerCharacter::ActivateAbility(int InputId)
-{
-	if(auto AS = GetAbilitySystemComponent())
-	{
-		if(auto Ability = AS->FindAbilitySpecFromInputID(InputId))
+		if(auto Ability = AS->FindAbilitySpecFromInputID( static_cast<int32>(InputId)))
 		{
 			AS->TryActivateAbility(Ability->Handle);
 		}

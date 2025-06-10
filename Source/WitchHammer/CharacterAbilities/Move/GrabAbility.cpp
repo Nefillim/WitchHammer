@@ -3,6 +3,7 @@
 
 #include "GrabAbility.h"
 
+#include "MovieSceneTracksComponentTypes.h"
 #include "Engine/SkeletalMeshSocket.h"
 #include "WitchHammer/Character/WitchHammerCharacter.h"
 
@@ -20,7 +21,19 @@ void UGrabAbility::CommitExecute(const FGameplayAbilitySpecHandle Handle, const 
 	{
 		if (USkeletalMeshSocket const* RightHandSocket = Character->GetMesh()->GetSocketByName(SocketName))
 		{
-			
+			if(auto PC = Cast<APlayerController>(Character->GetController()))
+			{
+				FHitResult hitResult;
+				PC->GetHitResultUnderCursorByChannel(UEngineTypes::ConvertToTraceType(ECC_Visibility), true,hitResult);
+				if(auto Target = hitResult.GetActor())
+				{
+					if(Target->GetComponentByClass(UAbilitySystemComponent::StaticClass()))
+					{
+						const FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget, false);
+						Target->AttachToActor(Character, Rules, SocketName); 
+					}
+				}
+			}
 		}
 	}
 	Super::CommitExecute(Handle, ActorInfo, ActivationInfo);

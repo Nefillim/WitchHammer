@@ -8,7 +8,6 @@
 #include "BaseAttributeSet.h"
 #include "WitchHammer/Components/CustomizationComponent.h"
 #include "WitchHammer/Inventory/Components/InventoryComponent.h"
-#include "WitchHammer/Weapon/WeaponComponent.h"
 #include "BaseCharacter.generated.h"
 
 UCLASS()
@@ -55,8 +54,5 @@ public:
 
 	UFUNCTION()
 	UInventoryComponent* GetInventoryComponent(){return InventoryComponent;}
-
-	UFUNCTION()
-	UWeaponComponent* GetWeaponComponent(){return WeaponComponent;}
 	
 };

@@ -5,6 +5,11 @@
 
 #include "WitchHammer/GameBase/GameDataAsset.h"
 
+FItemAsset& FItemAsset::operator=(FItemAsset* ItemAsset)
+{
+	return *ItemAsset;
+}
+
 void UItem::SetupAsset(FString ItemId)
 {
 	if(auto GameData = UGameDataAsset::Get(GetWorld()))
@@ -31,7 +36,7 @@ void UItem::OnEquip(ABaseCharacter* Character)
 {
 	if(auto AbilitySystem = Character->GetAbilitySystemComponent())
 	{
-		AbilitySystem->GiveAbility(Asset->AbilitySpec);
+		AbilitySystem->GiveAbility(Asset.AbilitySpec);
 	}
 }
 
@@ -39,6 +44,6 @@ void UItem::OnUnEquip(ABaseCharacter* Character)
 {
 	if(auto AbilitySystem = Character->GetAbilitySystemComponent())
 	{
-		AbilitySystem->ClearAbility(Asset->AbilitySpec.Handle);
+		AbilitySystem->ClearAbility(Asset.AbilitySpec.Handle);
 	}
 }

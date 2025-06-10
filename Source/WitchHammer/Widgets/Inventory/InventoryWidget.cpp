@@ -7,18 +7,18 @@
 
 void UInventoryWidget::CreateSlot(UItemStack* ItemStack)
 {
-	if(auto Slot = CreateWidget<UInventorySlotWidget>(this, InventorySlotWidgetClass))
+	if(auto SlotWidget = CreateWidget<UInventorySlotWidget>(this, InventorySlotWidgetClass))
 	{
-		Slot->Init(ItemStack);
-		InventorySlots.Add(Slot);
+		SlotWidget->Init(ItemStack);
+		InventorySlots.Add(SlotWidget);
 	}
 }
 
 void UInventoryWidget::RefreshSlots()
 {
-	for(auto Slot : InventorySlots)
+	for(auto InventorySlotWidget : InventorySlots)
 	{
-		Slot->Destruct();
+		InventorySlotWidget->Destruct();
 	}
 	
 	InventorySlots.Empty();
@@ -38,9 +38,9 @@ void UInventoryWidget::RefreshSlots()
 	}
 }
 
-void UInventoryWidget::OnSlotSelected(UInventorySlotWidget* Slot)
+void UInventoryWidget::OnSlotSelected(UInventorySlotWidget* InventorySlot)
 {
-	SelectedSlot = Slot;
+	SelectedSlot = InventorySlot;
 }
 
 void UInventoryWidget::EquipSelectedSlot()

@@ -6,7 +6,6 @@
 #include "IDetailTreeNode.h"
 #include "Kismet/GameplayStatics.h"
 #include "WitchHammer/Inventory/Items/ItemStack.h"
-#include "WitchHammer/Inventory/Items/UniqueItem.h"
 
 // Sets default values for this component's properties
 UInventoryComponent::UInventoryComponent()

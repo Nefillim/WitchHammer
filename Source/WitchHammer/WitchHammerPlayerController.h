@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "InputAction.h"
+#include "Character/WitchHammerCharacter.h"
 #include "Templates/SubclassOf.h"
 #include "GameFramework/PlayerController.h"
 #include "WitchHammerPlayerController.generated.h"
@@ -87,6 +88,7 @@ protected:
 	void OnTouchTriggered();
 	void OnTouchReleased();*/
 
+	//Input actions
 	UFUNCTION()
 	void MoveForward();
 
@@ -106,11 +108,29 @@ protected:
 	void BaseAttack();
 
 	UFUNCTION()
-	void UseAbility();
+	void SpecialAttack();
+
+	UFUNCTION()
+	void Grab();
+
+	UFUNCTION()
+	void Toss();
+
+	UFUNCTION()
+	void Interact();
+
+	UFUNCTION()
+	void MoveBoost();
+
+	UFUNCTION()
+	void UseCoreAbility();
+
+	UFUNCTION()
+	void UseAbilityByType(EInputAction InputId);
 	
 	UFUNCTION()
 	void Move(FVector Direction);
-
+//
 private:
 	FVector CachedDestination;
 

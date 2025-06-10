@@ -11,8 +11,8 @@ UItemStack* UItemStack::Create(int32 Count = 1)
 	if(Stack)
 	{
 		Stack->Count = Count;
-		Stack->OnEquipItem.AddUniqueDynamic(Stack, OnEquip);
-		Stack->OnUnEquipItem.AddUniqueDynamic(Stack, OnUnEquip);
+		Stack->OnEquipItem.AddUniqueDynamic(Stack, &OnEquip);
+		Stack->OnUnEquipItem.AddUniqueDynamic(Stack, &OnUnEquip);
 		return Stack;	
 	}
 	return nullptr;

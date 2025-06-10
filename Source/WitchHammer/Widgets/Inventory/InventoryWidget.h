@@ -35,7 +35,7 @@ class WITCHHAMMER_API UInventoryWidget : public UUserWidget
 	void RefreshSlots();
 
 	UFUNCTION()
-	void OnSlotSelected(UInventorySlotWidget* Slot);
+	void OnSlotSelected(UInventorySlotWidget* InventorySlot);
 
 	UFUNCTION()
 	void EquipSelectedSlot();

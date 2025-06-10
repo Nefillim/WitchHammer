@@ -5,6 +5,6 @@
 
 void UInventorySlotWidget::Init(UItemStack* Stack)
 {
-	StackIcon = Stack->Asset->Icon;
+	StackIcon = Stack->Asset.Icon;
 	ItemStack = Stack;
 }

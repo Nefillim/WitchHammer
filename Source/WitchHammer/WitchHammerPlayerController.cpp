@@ -58,7 +58,12 @@ void AWitchHammerPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveUp);
 		
 		EnhancedInputComponent->BindAction(BaseAttackAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::BaseAttack);
-		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::UseAbility);
+		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::SpecialAttack);
+		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Grab);
+		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Toss);
+		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Interact);
+		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::MoveBoost);
+		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::UseCoreAbility);
 	}
 	else
 	{
@@ -96,25 +101,51 @@ void AWitchHammerPlayerController::MoveRight()
 
 void AWitchHammerPlayerController::MoveUp()
 {
-	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
-	{
-		ControlledPawn->Jump();
-	}
+	UseAbilityByType(EInputAction::Jump);
 }
 
 void AWitchHammerPlayerController::BaseAttack()
 {
-	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
-	{
-		ControlledPawn->ActivateAbility(0);
-	}
+	UseAbilityByType(EInputAction::BaseAttack);
 }
 
-void AWitchHammerPlayerController::UseAbility()
+void AWitchHammerPlayerController::SpecialAttack()
+{
+	UseAbilityByType(EInputAction::SpecialAction);
+}
+
+void AWitchHammerPlayerController::Grab()
+{
+	
+	UseAbilityByType(EInputAction::Grab);
+}
+
+void AWitchHammerPlayerController::Toss()
+{
+	UseAbilityByType(EInputAction::Toss);
+}
+
+
+void AWitchHammerPlayerController::Interact()
+{
+	UseAbilityByType(EInputAction::Interact);
+}
+
+void AWitchHammerPlayerController::MoveBoost()
+{
+	UseAbilityByType(EInputAction::OnMove);
+}
+
+void AWitchHammerPlayerController::UseCoreAbility()
+{
+	UseAbilityByType(EInputAction::Core);
+}
+
+void AWitchHammerPlayerController::UseAbilityByType(EInputAction InputId)
 {
 	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
 	{
-		ControlledPawn->ActivateAbility(1);
+		ControlledPawn->ActivateAbility(InputId);
 	}
 }
 
