@@ -23,31 +23,40 @@ void UCustomizationComponent::BeginPlay()
 
 void UCustomizationComponent::EquipItem(UItem* Item)
 {
-	if(auto Character = Cast<AWitchHammerCharacter>(GetOwner()))
+	if(Item)
 	{
-		auto SlotType = Item->Asset.SlotType;
-		if(EquippedItems.Contains(SlotType))
+		if(auto Character = Cast<AWitchHammerCharacter>(GetOwner()))
 		{
-			if(SlotType == ESlotType::RightArm)
+			auto SlotType = Item->Asset.SlotType;
+			if(EquippedItems.Contains(SlotType))
 			{
-				SlotType = ESlotType::LeftArm;
-				if(EquippedItems.Contains(SlotType))
+				if(SlotType == ESlotType::RightArm)
+				{
+					SlotType = ESlotType::LeftArm;
+					if(EquippedItems.Contains(SlotType))
+					{
+						UnEquipItem(SlotType);
+					}
+				}else
 				{
 					UnEquipItem(SlotType);
 				}
-			}else
-			{
-				UnEquipItem(SlotType);
 			}
-		}
 		
-		EquippedItems.Emplace(SlotType, Item);
+			EquippedItems.Emplace(SlotType, Item);
 
-		if(Character->CustomizableMeshes.Contains(SlotType))
-		{
-			Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(Item->Asset.Mesh);
-		}
-		Item->OnEquipItem.Broadcast(Character);	
+			if(Character->CustomizableMeshes.Contains(SlotType))
+			{
+				if(Item->Asset.Mesh)
+				{
+					if(Character->CustomizableMeshes[SlotType])
+					{
+						Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(Item->Asset.Mesh);
+					}
+				}
+			}
+			Item->OnEquipItem.Broadcast(Character);	
+		}	
 	}
 }
 
@@ -62,10 +71,11 @@ void UCustomizationComponent::UnEquipItem(ESlotType SlotType)
 		}
 		if(Character->CustomizableMeshes.Contains(SlotType))
 		{
-			Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(DefaultMeshes.FindByPredicate([SlotType](FMeshBySlotType MeshBySlot)
+			if(DefaultMeshes.FindByPredicate([SlotType](FMeshBySlotType MeshBySlot){return MeshBySlot.SlotType == SlotType;})->Mesh)
 			{
-				return MeshBySlot.SlotType == SlotType;
-			})->Mesh);
+				Character->CustomizableMeshes[SlotType]->SetSkeletalMesh(
+					DefaultMeshes.FindByPredicate([SlotType](FMeshBySlotType MeshBySlot){return MeshBySlot.SlotType == SlotType;})->Mesh);
+			}
 		}
 		
 	}

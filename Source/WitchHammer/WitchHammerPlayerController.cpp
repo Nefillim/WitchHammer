@@ -10,6 +10,7 @@
 #include "InputActionValue.h"
 #include "EnhancedInputSubsystems.h"
 #include "Character/WitchHammerCharacter.h"
+#include "Components/InteractionComponent.h"
 #include "Engine/LocalPlayer.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
@@ -56,14 +57,15 @@ void AWitchHammerPlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(MoveLeftAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveLeft);
 		EnhancedInputComponent->BindAction(MoveRightAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveRight);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::MoveUp);
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::Interact);
 		
-		EnhancedInputComponent->BindAction(BaseAttackAction, ETriggerEvent::Triggered, this, &AWitchHammerPlayerController::BaseAttack);
-		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::SpecialAttack);
-		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Grab);
-		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Toss);
-		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Interact);
-		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::MoveBoost);
-		EnhancedInputComponent->BindAction(AbilityAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::UseCoreAbility);
+		EnhancedInputComponent->BindAction(BaseAttackAction, ETriggerEvent::Ongoing, this, &AWitchHammerPlayerController::BaseAttack);
+		
+		EnhancedInputComponent->BindAction(SpecialAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::SpecialAttack);
+		EnhancedInputComponent->BindAction(GrabAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Grab);
+		EnhancedInputComponent->BindAction(TossAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::Toss);
+		EnhancedInputComponent->BindAction(MoveBoostAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::MoveBoost);
+		EnhancedInputComponent->BindAction(CoreAction, ETriggerEvent::Started, this, &AWitchHammerPlayerController::UseCoreAbility);
 	}
 	else
 	{
@@ -101,47 +103,40 @@ void AWitchHammerPlayerController::MoveRight()
 
 void AWitchHammerPlayerController::MoveUp()
 {
-	UseAbilityByType(EInputAction::Jump);
+	UseAbilityByType(UGameplayTagsManager::Get().RequestGameplayTag(FName("AbilityType.Jump")));
 }
 
 void AWitchHammerPlayerController::BaseAttack()
 {
-	UseAbilityByType(EInputAction::BaseAttack);
+	UseAbilityByType(UGameplayTagsManager::Get().RequestGameplayTag(FName("AbilityType.BaseAttack")));
 }
 
 void AWitchHammerPlayerController::SpecialAttack()
 {
-	UseAbilityByType(EInputAction::SpecialAction);
+	UseAbilityByType(UGameplayTagsManager::Get().RequestGameplayTag(FName("AbilityType.SpecialAction")));
 }
 
 void AWitchHammerPlayerController::Grab()
 {
-	
-	UseAbilityByType(EInputAction::Grab);
+	UseAbilityByType(UGameplayTagsManager::Get().RequestGameplayTag(FName("AbilityType.Grab")));
 }
 
 void AWitchHammerPlayerController::Toss()
 {
-	UseAbilityByType(EInputAction::Toss);
-}
-
-
-void AWitchHammerPlayerController::Interact()
-{
-	UseAbilityByType(EInputAction::Interact);
+	UseAbilityByType(UGameplayTagsManager::Get().RequestGameplayTag(FName("AbilityType.Toss")));
 }
 
 void AWitchHammerPlayerController::MoveBoost()
 {
-	UseAbilityByType(EInputAction::OnMove);
+	UseAbilityByType(UGameplayTagsManager::Get().RequestGameplayTag(FName("AbilityType.OnMove")));
 }
 
 void AWitchHammerPlayerController::UseCoreAbility()
 {
-	UseAbilityByType(EInputAction::Core);
+	UseAbilityByType(UGameplayTagsManager::Get().RequestGameplayTag(FName("AbilityType.Core")));
 }
 
-void AWitchHammerPlayerController::UseAbilityByType(EInputAction InputId)
+void AWitchHammerPlayerController::UseAbilityByType(FGameplayTag InputId)
 {
 	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
 	{
@@ -149,6 +144,19 @@ void AWitchHammerPlayerController::UseAbilityByType(EInputAction InputId)
 	}
 }
 
+void AWitchHammerPlayerController::Interact()
+{
+	if(auto ControlledPawn = Cast<AWitchHammerCharacter>(GetPawn()))
+	{
+		if(auto Target = ControlledPawn->InteractionTarget)
+		{
+			if(auto InteractionComp = Target->FindComponentByClass<UInteractionComponent>())
+			{
+				InteractionComp->OnStartInteraction.Execute(ControlledPawn);
+			}
+		}
+	}
+}
 
 /*
 // Triggered every frame when the input is held down

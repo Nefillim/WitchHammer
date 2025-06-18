@@ -17,30 +17,38 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEquipItem, ABaseCharacter*, Chara
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnUnEquipItem, ABaseCharacter*, Character);
 
 USTRUCT()
-struct FItemAsset
+struct FItemAsset : public FTableRowBase
 {
 	GENERATED_BODY()
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString Id;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMesh* Mesh;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* Texture;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* Icon;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 MaxCountInStack;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ESlotType SlotType;
 
-	UPROPERTY()
-	FGameplayAbilitySpec AbilitySpec;
+	//TODO: Add ability data instead of spec, spec is created only after adding ability to AS
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UGameplayAbility> AbilityClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FGameplayTag InputTag;
+
+	FItemAsset(){}
+	
+	FItemAsset(FItemAsset* Asset);
 	
 	FItemAsset& operator=(FItemAsset* ItemAsset);
 };
@@ -67,7 +75,7 @@ public:
 	FItemAsset Asset;
 
 	UFUNCTION()
-	void SetupAsset(FString ItemId);
+	void SetupAsset(FString ItemId, UObject* WorldContext);
 	
 	UFUNCTION()
 	void GenerateProps(FItemGeneratedProps Props);

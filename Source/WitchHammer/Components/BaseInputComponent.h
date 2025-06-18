@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "EnhancedInputComponent.h"
+#include "GameplayTagContainer.h"
 #include "BaseInputComponent.generated.h"
 
 
@@ -18,6 +19,5 @@ public:
 
 protected:
 	// Called when the game starts
-	virtual void BeginPlay() override;
-
+	virtual void BeginPlay() override;;
 };

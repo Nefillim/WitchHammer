@@ -1,6 +1,8 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "WitchHammerCharacter.h"
+
+#include "GameplayTagsManager.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Camera/CameraComponent.h"
 #include "Components/DecalComponent.h"
@@ -14,6 +16,8 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "WitchHammer/CharacterAbilities/Move/GrabAbility.h"
 #include "WitchHammer/CharacterAbilities/Spawn/SpawnProjectilesAbility.h"
+#include "WitchHammer/Components/BaseInputComponent.h"
+#include "WitchHammer/GameBase/GameDataAsset.h"
 
 AWitchHammerCharacter::AWitchHammerCharacter()
 {
@@ -76,23 +80,37 @@ void AWitchHammerCharacter::InitMeshes()
 	Hips->SetupAttachment(GetMesh());
 	Legs = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Legs"));
 	Legs->SetupAttachment(GetMesh());
+	
+	CustomizableMeshes.Emplace(ESlotType::Head, Head);
+	CustomizableMeshes.Emplace(ESlotType::Body, Body);
+	CustomizableMeshes.Emplace(ESlotType::Back, Back);
+	CustomizableMeshes.Emplace(ESlotType::LeftArm, LeftArm);
+	CustomizableMeshes.Emplace(ESlotType::RightArm, RightArm);
+	CustomizableMeshes.Emplace(ESlotType::Hips, Hips);
+	CustomizableMeshes.Emplace(ESlotType::Legs, Legs);
 }
 
 void AWitchHammerCharacter::InitAbilities()
 {
 	if(AbilitySystemComponent)
 	{
-		auto BaseAttackSpec = AbilitySystemComponent->BuildAbilitySpecFromClass(AttackAbilityClass, 0,
-			static_cast<int32>(EInputAction::BaseAttack));
-		AbilitySystemComponent->GiveAbility(BaseAttackSpec);
-		auto GrabSpec = AbilitySystemComponent->BuildAbilitySpecFromClass(GrabAbilityClass, 0,
-			static_cast<int32>(EInputAction::Grab));
-		AbilitySystemComponent->GiveAbility(GrabSpec);
-		auto JumpSpec = AbilitySystemComponent->BuildAbilitySpecFromClass(JumpAbilityClass, 0,
-			static_cast<int32>(EInputAction::Jump));
-		AbilitySystemComponent->GiveAbility(JumpSpec);
+		for(auto Tag : AbilityClassByTag)
+		{
+			InitAbility(Tag.Key);
+		}		
 	}
 }
+
+void AWitchHammerCharacter::InitAbility(FGameplayTag AbilityTag)
+{
+	if(AbilityClassByTag.Contains(AbilityTag))
+	{
+		auto BaseAttackSpec = AbilitySystemComponent->BuildAbilitySpecFromClass(AbilityClassByTag[AbilityTag], 0,
+				UGameDataAsset::Get(GetWorld())->InputIdByTag(AbilityTag));
+		AbilitySystemComponent->GiveAbility(BaseAttackSpec);	
+	}
+}
+
 
 void AWitchHammerCharacter::InitTimers()
 {
@@ -115,11 +133,11 @@ void AWitchHammerCharacter::SetLookAtRotation()
 	}
 }
 
-void AWitchHammerCharacter::ActivateAbility(EInputAction InputId)
+void AWitchHammerCharacter::ActivateAbility(FGameplayTag InputId)
 {
 	if(auto AS = GetAbilitySystemComponent())
 	{
-		if(auto Ability = AS->FindAbilitySpecFromInputID( static_cast<int32>(InputId)))
+		if(auto Ability = AS->FindAbilitySpecFromInputID(UGameDataAsset::Get(GetWorld())->InputIdByTag(InputId)))
 		{
 			AS->TryActivateAbility(Ability->Handle);
 		}

@@ -20,6 +20,6 @@ public:
 	UGameDataAsset* GetGameDataAsset() const;
 
 protected:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GameData")
 	TSoftObjectPtr<UGameDataAsset> GameData;
 };

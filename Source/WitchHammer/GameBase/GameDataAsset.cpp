@@ -18,3 +18,12 @@ UGameDataAsset* UGameDataAsset::Get(const UObject* WorldContext)
 
 	return nullptr;
 }
+
+int UGameDataAsset::InputIdByTag(FGameplayTag Tag)
+{
+	if (InputIdMap.Contains(Tag))
+	{
+		return InputIdMap[Tag];
+	}
+	return -1;
+}

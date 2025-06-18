@@ -63,7 +63,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* MoveRightAction;
 
-	// Use Ability InputAction
+	// Use Jump InputAction
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	UInputAction* JumpAction;
 
@@ -71,7 +71,23 @@ public:
 	UInputAction* BaseAttackAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
-	UInputAction* AbilityAction;
+	UInputAction* SpecialAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* GrabAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* TossAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* InteractAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* CoreAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
+	UInputAction* MoveBoostAction;
+
 
 protected:
 	/** True if the controlled character should navigate to the mouse cursor. */
@@ -126,7 +142,7 @@ protected:
 	void UseCoreAbility();
 
 	UFUNCTION()
-	void UseAbilityByType(EInputAction InputId);
+	void UseAbilityByType(FGameplayTag InputId);
 	
 	UFUNCTION()
 	void Move(FVector Direction);

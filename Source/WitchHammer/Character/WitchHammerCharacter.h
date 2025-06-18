@@ -5,24 +5,10 @@
 #include "CoreMinimal.h"
 #include "ActorTransformer.h"
 #include "BaseCharacter.h"
-#include "GameFramework/Character.h"
 #include "WitchHammer/CharacterAbilities/Spawn/SpawnProjectilesAbility.h"
 #include "WitchHammerCharacter.generated.h"
 
 class UBaseInputComponent;
-//Enum to classify the abilities types used by player
-UENUM(BlueprintType)
-enum class EInputAction : uint8
-{
-	BaseAttack,
-	SpecialAction,
-	Jump,
-	Grab,
-	Toss,
-	OnMove,
-	Core,
-	Interact
-};
 
 UCLASS(Blueprintable)
 class AWitchHammerCharacter : public ABaseCharacter
@@ -30,16 +16,6 @@ class AWitchHammerCharacter : public ABaseCharacter
 	GENERATED_BODY()
 
 public:
-	TMap<ESlotType, USkeletalMeshComponent*> CustomizableMeshes{
-			{ESlotType::Head, Head},
-			{ESlotType::Body, Body},
-			{ESlotType::Back, Back},
-			{ESlotType::LeftArm, LeftArm},
-			{ESlotType::RightArm, RightArm},
-			{ESlotType::Hips, Hips},
-			{ESlotType::Legs, Legs},
-		};
-	
 	AWitchHammerCharacter();
 
 	virtual void BeginPlay() override;
@@ -49,6 +25,9 @@ public:
 
 	UFUNCTION()
 	void InitAbilities();
+	
+	UFUNCTION()
+	void InitAbility(FGameplayTag AbilityTag);
 
 	UFUNCTION()
 	void InitTimers();
@@ -58,27 +37,29 @@ public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<ESlotType, USkeletalMeshComponent*> CustomizableMeshes;
 	//Meshes
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* Head;
+	TObjectPtr<USkeletalMeshComponent> Head;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* Body;
+	TObjectPtr<USkeletalMeshComponent> Body;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* LeftArm;
+	TObjectPtr<USkeletalMeshComponent> LeftArm;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* RightArm;
+	TObjectPtr<USkeletalMeshComponent> RightArm;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* Back;
+	TObjectPtr<USkeletalMeshComponent> Back;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* Hips;
+	TObjectPtr<USkeletalMeshComponent> Hips;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* Legs;
+	TObjectPtr<USkeletalMeshComponent> Legs;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FVector ProjectileSpawnLocation;
@@ -93,15 +74,21 @@ public:
 	TSubclassOf<UGameplayAbility> GrabAbilityClass;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UGameplayAbility> TossAbilityClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UGameplayAbility> SelectTargetAbilityClass;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<FGameplayTag, TSubclassOf<UGameplayAbility>> AbilityClassByTag;
 	//Components
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UBaseInputComponent> CustomInputComponent;
 
 	//GAS
 	UFUNCTION()
-	void ActivateAbility(EInputAction InputId);
+	void ActivateAbility(FGameplayTag InputId);
+	
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))

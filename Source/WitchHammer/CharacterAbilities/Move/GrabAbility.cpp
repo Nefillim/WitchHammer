@@ -19,6 +19,12 @@ void UGrabAbility::CommitExecute(const FGameplayAbilitySpecHandle Handle, const 
 {
 	if(auto Character = Cast<AWitchHammerCharacter>(ActorInfo->OwnerActor))
 	{
+		if(Character->GrabbedObject)
+		{
+			const FDetachmentTransformRules Rules = FDetachmentTransformRules(EDetachmentRule::KeepWorld, true);
+			Character->GrabbedObject->DetachFromActor(Rules);
+			Character->GrabbedObject = nullptr;
+		}
 		if (USkeletalMeshSocket const* RightHandSocket = Character->GetMesh()->GetSocketByName(SocketName))
 		{
 			if(auto PC = Cast<APlayerController>(Character->GetController()))
@@ -30,7 +36,12 @@ void UGrabAbility::CommitExecute(const FGameplayAbilitySpecHandle Handle, const 
 					if(Target->GetComponentByClass(UAbilitySystemComponent::StaticClass()))
 					{
 						const FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::SnapToTarget, false);
-						Target->AttachToActor(Character, Rules, SocketName); 
+						Target->AttachToActor(Character, Rules, SocketName);
+						Character->GrabbedObject = Target;
+						if(auto MoveComp = Character->GrabbedObject->GetComponentByClass<UProjectileMovementComponent>())
+						{
+							MoveComp->Velocity = FVector(0, 0, 0);
+						}
 					}
 				}
 			}
